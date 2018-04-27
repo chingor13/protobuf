@@ -107,7 +107,7 @@ build_csharp() {
   # Check that the protos haven't broken C# codegen.
   # TODO(jonskeet): Fail if regenerating creates any changes.
   csharp/generate_protos.sh
-  
+
   csharp/buildall.sh
   cd conformance && make test_csharp && cd ..
 
@@ -350,7 +350,7 @@ generate_php_test_proto() {
   # Generate test file
   rm -rf generated
   mkdir generated
-  ../../src/protoc --php_out=generated         \
+  ../../src/protoc --php_out=generated -I. -I../../src \
     proto/test.proto                           \
     proto/test_include.proto                   \
     proto/test_no_namespace.proto              \
@@ -365,11 +365,9 @@ generate_php_test_proto() {
     proto/test_reserved_message_upper.proto    \
     proto/test_service.proto                   \
     proto/test_service_namespace.proto         \
-    proto/test_descriptors.proto
-  pushd ../../src
-  ./protoc --php_out=../php/tests/generated -I../php/tests -I. \
-    ../php/tests/proto/test_import_descriptor_proto.proto
-  popd
+    proto/test_descriptors.proto               \
+    proto/test_import_descriptor_proto.proto   \
+    proto/test_timestamps.proto
   popd
 }
 

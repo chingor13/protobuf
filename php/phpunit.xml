@@ -12,6 +12,7 @@
       <file>tests/well_known_test.php</file>
       <file>tests/descriptors_test.php</file>
       <file>tests/generated_service_test.php</file>
+      <file>tests/timestamps_test.php</file>
     </testsuite>
   </testsuites>
 </phpunit>
